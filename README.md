@@ -7,7 +7,7 @@ Proyecto de Estudio: Creacion de una base de datos que pueda gestionar y almacen
 ## Texto de la solicitud:
 "Todos los años las municipales reciben los permisos de circulación por parte de los ciudadanos de sus comunas, 
 con estos fondos, las municipalidades realizan diferentes proyectos de mejoras, 
-por lo cual es importante capturar la mayor cantidad de permisos. 
+por lo cual es importante capturar la mayor cantidad de permisos. <br>
 Por eso, una de las comunas donde usted reside, desea informatizar su proceso y le solicita a usted que diseñe 
 una Base de Datos para almacenar y gestionar la información empleada considerando los requerimientos planteados."
 

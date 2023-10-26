@@ -16,3 +16,14 @@ CREATE TABLE planta 	(rut VARCHAR(10) PRIMARY KEY NOT NULL, Sueldo INT, fecha_In
 CREATE TABLE permiso 	(Cod_interno VARCHAR(15) PRIMARY KEY NOT NULL, patente VARCHAR(8), voucher_pago VARCHAR(15), monto INT, medio_pago VARCHAR(10), fecha_pago DATE, rut_funcionario VARCHAR(10), 
     CONSTRAINT fkrutf FOREIGN KEY(rut_funcionario) REFERENCES funcionario(rut) ON DELETE CASCADE ON UPDATE CASCADE, 
     CONSTRAINT fkpatv FOREIGN KEY(patente) REFERENCES vehiculo(patente) ON DELETE CASCADE ON UPDATE CASCADE );
+
+-- Verificacion de las tablas creadas
+DESC ciudadano;
+DESC permiso;
+DESC vehiculo;
+DESC multa;
+DESC soap;
+DESC revision;
+DESC funcionario;
+DESC honorario;
+DESC planta;

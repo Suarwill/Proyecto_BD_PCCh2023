@@ -1,25 +1,3 @@
--- Creado mediante mariaDB
-CREATE TABLE ciudadano 	(Rut VARCHAR(10) PRIMARY KEY NOT NULL, Nomb VARCHAR(30), Apel VARCHAR(30), Direc VARCHAR(30), Comuna VARCHAR(20), Telefono INT, Email VARCHAR(50) );
-CREATE TABLE vehiculo 	(Patente VARCHAR(8) PRIMARY KEY NOT NULL, Tipo_veh VARCHAR(15), Marca VARCHAR(20), Año INT, Modelo VARCHAR(20), Color VARCHAR(20), rut_dueño VARCHAR(10), CONSTRAINT fkrutc FOREIGN KEY(rut_dueño) REFERENCES ciudadano(rut) ON DELETE CASCADE ON UPDATE CASCADE );
-CREATE TABLE multa 	(Nro_multa INT PRIMARY KEY NOT NULL, Fecha_multa DATE, patente VARCHAR(8), Fecha_pago DATE, Estado VARCHAR(10), CONSTRAINT fkpatm FOREIGN KEY(patente) REFERENCES vehiculo(patente) ON DELETE CASCADE ON UPDATE CASCADE );
-CREATE TABLE soap 	(Cod_soap INT PRIMARY KEY NOT NULL, patente VARCHAR(8), aseguradora VARCHAR(20), fecha_ini DATE, fecha_term DATE, valor_costo INT, CONSTRAINT fkpats FOREIGN KEY(patente) REFERENCES vehiculo(patente) ON DELETE CASCADE ON UPDATE CASCADE );
-CREATE TABLE revision 	(Cod_revision INT PRIMARY KEY NOT NULL, patente VARCHAR(8), aprobacion VARCHAR(2), monto INT, CONSTRAINT fkpatr FOREIGN KEY(patente) REFERENCES vehiculo(patente) ON DELETE CASCADE ON UPDATE CASCADE);
-CREATE TABLE funcionario (rut VARCHAR(10) PRIMARY KEY NOT NULL, nomb VARCHAR(30), apel VARCHAR(30), direc VARCHAR(30), celular INT, tipo VARCHAR(20), modalidad VARCHAR(10), municipalidad VARCHAR(10) );
-CREATE TABLE honorario 	(rut VARCHAR(10) PRIMARY KEY NOT NULL, Valor_hora INT, hora_entrada TIME, hora_salida TIME, CONSTRAINT fkrut FOREIGN KEY(rut) REFERENCES funcionario(rut) ON DELETE CASCADE ON UPDATE CASCADE);
-CREATE TABLE planta 	(rut VARCHAR(10) PRIMARY KEY NOT NULL, Sueldo INT, fecha_Ing DATE, Departamento VARCHAR(20), CONSTRAINT fkrut2 FOREIGN KEY(rut) REFERENCES funcionario(rut) ON DELETE CASCADE ON UPDATE CASCADE );
-CREATE TABLE permiso 	(Cod_interno VARCHAR(15) PRIMARY KEY NOT NULL, patente VARCHAR(8), voucher_pago VARCHAR(15), monto INT, medio_pago VARCHAR(10), fecha_pago DATE, rut_funcionario VARCHAR(10), CONSTRAINT fkrutf FOREIGN KEY(rut_funcionario) REFERENCES funcionario(rut) ON DELETE CASCADE ON UPDATE CASCADE, CONSTRAINT fkpatv FOREIGN KEY(patente) REFERENCES vehiculo(patente) ON DELETE CASCADE ON UPDATE CASCADE );
-
--- Verificacion de las tablas creadas
-DESC ciudadano;
-DESC permiso;
-DESC vehiculo;
-DESC multa;
-DESC soap;
-DESC revision;
-DESC funcionario;
-DESC honorario;
-DESC planta;
-
 -- Insercion de datos "no reales"
 INSERT INTO ciudadano VALUES 	('12345678-9', 'Maria', 'Gonzalez Rivera', 'Av Providencia 1234', 'Valparaiso', 985856363, 'mariagonzalez@gmail.com');
 INSERT INTO ciudadano VALUES 	('23456789-0', 'Emily', 'Wilson Ferreira', 'Calle Los Pajaros 567', 'Quilpue', 978452369 , 'emily.wilson@yahoo.com');
@@ -85,42 +63,3 @@ SELECT * FROM revision;
 SELECT * FROM funcionario;
 SELECT * FROM honorario;
 SELECT * FROM planta;
-
--- Tarea "actualizar un correo"
-UPDATE ciudadano SET Email = 'liandomuebles@gmail.com' WHERE Rut = '14567890-1';
-select * from ciudadano;
-
--- Tarea "Eliminar un registro"
-DELETE FROM permiso WHERE Cod_interno = 2325663356225;
-select * from permiso;
-
--- Busqueda de datos
-SELECT 
- CONCAT(FORMAT(c.Rut, 0), '-', RIGHT(c.Rut, 1)) AS Rut,
- CONCAT(c.Nomb, ' ', c.Apel) AS Nombre,
- c.Telefono AS Telefono,
- v.Tipo_veh AS Tipo_de_Vehiculo,
- v.Marca AS Marca,
- v.Año AS Año,
- p.patente AS Patente,
- soap.aseguradora AS Nombre_de_Aseguradora,
- DATE_FORMAT(soap.fecha_term, '%d de %M de %Y') AS Fecha_de_Termino_SOAP,
- p.medio_pago AS Tipo_de_Pago,
- CONCAT('$', FORMAT(p.monto, 0)) AS Valor_de_Pago,
- p.medio_pago AS Forma_de_Pago
-FROM permiso AS p 
-JOIN vehiculo AS v ON p.patente = v.Patente
-JOIN ciudadano AS c ON v.rut_dueño = c.Rut
-LEFT JOIN soap ON p.patente = soap.patente
-ORDER BY c.Rut ASC;
-
--- Busqueda: "Cantidad de vehiculos por tipo y su recaudacion"
-SELECT 
- v.Tipo_veh AS Tipo_de_Vehiculo,
- COUNT(*) AS Cantidad_de_Vehiculos,
- CONCAT('$', FORMAT(SUM(p.monto), 0)) AS Total_Recaudado
-FROM permiso AS p JOIN vehiculo AS v ON p.patente = v.Patente WHERE MONTH(p.fecha_pago) = 3
-GROUP BY v.Tipo_veh ORDER BY v.Tipo_veh ASC;
-
--- Busqueda: "Estado de multas de Patente ingresada"
-SELECT Fecha_multa AS Fecha_de_Cursado, Fecha_pago AS Fecha_de_Pago, Estado FROM multa WHERE patente = 'LR-7890';

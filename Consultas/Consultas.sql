@@ -19,12 +19,12 @@ LEFT JOIN soap ON p.patente = soap.patente
 ORDER BY c.Rut ASC;
 
 -- Busqueda: "Cantidad de vehiculos por tipo y su recaudacion"
-SELECT 
- v.Tipo_veh AS Tipo_de_Vehiculo,
+SELECT v.Tipo_veh AS Tipo_de_Vehiculo,
  COUNT(*) AS Cantidad_de_Vehiculos,
  CONCAT('$', FORMAT(SUM(p.monto), 0)) AS Total_Recaudado
-FROM permiso AS p JOIN vehiculo AS v ON p.patente = v.Patente WHERE MONTH(p.fecha_pago) = 3
-GROUP BY v.Tipo_veh ORDER BY v.Tipo_veh ASC;
+ FROM permiso AS p JOIN vehiculo AS v ON p.patente = v.Patente WHERE MONTH(p.fecha_pago) = 3
+ GROUP BY v.Tipo_veh ORDER BY v.Tipo_veh ASC;
 
 -- Busqueda: "Estado de multas de Patente ingresada"
-SELECT Fecha_multa AS Fecha_de_Cursado, Fecha_pago AS Fecha_de_Pago, Estado FROM multa WHERE patente = 'LR-7890';
+SELECT Fecha_multa AS Fecha_de_Cursado, Fecha_pago AS Fecha_de_Pago, Estado 
+ FROM multa WHERE patente = 'LR-7890';

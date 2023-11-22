@@ -1,0 +1,1 @@
+-- Desarrolle una función que permita estimar la cantidad de personas que tiene más de un permiso.

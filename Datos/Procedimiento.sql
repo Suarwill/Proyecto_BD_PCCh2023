@@ -23,9 +23,9 @@ CALL MostrarPersonal();
 DELIMITER //
 CREATE PROCEDURE AjustePrecioIPC (IN aumento INT)
 BEGIN
-    UPDATE permiso SET monto = monto * (1+aumento/100); -- Aumentar 8%
+    UPDATE permiso SET monto = monto * (1+aumento/100); -- Aumentar porcentaje puesto en aumento
     SELECT * FROM permiso;                              -- Mostrar los precios ya aumentados
 END //
 
 -- Ejecutar el Procedimiento de IPC
-CALL AjustePrecioIPC;
+CALL AjustePrecioIPC(8);

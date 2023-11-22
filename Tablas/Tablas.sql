@@ -27,3 +27,6 @@ DESC revision;
 DESC funcionario;
 DESC honorario;
 DESC planta;
+
+-- Creamos tabla de auditoria Trigger (Control de rechazados)
+CREATE TABLE LogAuditoria (Cod_auditoria INT PRIMARY KEY AUTO_INCREMENT, mensaje VARCHAR(100));

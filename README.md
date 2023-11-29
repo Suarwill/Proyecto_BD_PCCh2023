@@ -13,8 +13,13 @@ una Base de Datos para almacenar y gestionar la información empleada consideran
 
 ## Mejora de version.
 Se mejora el repositorio de la siguiente forma:
-- **"Documentacion"**:                  > Archivos de planeacion del proyecto (MERN)
-- **"Tablas"** >> "Tablas.sql":         > Creacion de las tablas de datos del proyecto.
-- **"Datos"**  >> "Insert.sql":         > Creacion de datos ficticios.
-- **"Datos"** >> "Modificaciones.sql":  > Ejemplo de actualizacion y eliminacion de registro.
-- **"Consultas"** >> "Consultas.sql":   > Consulta de datos de los registros.
+- **"Documentacion"**:
+-      > Archivos de planeacion del proyecto (MERN)
+- **"Tablas"** >> "Tablas.sql":
+-      > Creacion de las tablas de datos del proyecto.
+- **"Datos"**  >> "Insert.sql":
+-      > Creacion de datos ficticios.
+- **"Datos"** >> "Modificaciones.sql":
+-      > Ejemplo de actualizacion y eliminacion de registro.
+- **"Consultas"** >> "Consultas.sql":
+-      > Consulta de datos de los registros.

@@ -12,6 +12,8 @@ por lo cual es importante capturar la mayor cantidad de permisos. <br>
 Por eso, una de las comunas donde usted reside, desea **informatizar** su proceso y le solicita a usted que diseñe 
 una Base de Datos para almacenar y gestionar la información empleada considerando los requerimientos planteados.*
 
+![Archivo MERN](https://github.com/Suarwill/Proyecto_BD_PCCh2023/blob/main/Documentacion/MERN%20PCCh.png)
+
 ## Mejora de version.
 Se mejora el repositorio de la siguiente forma:
 - **Documentacion** <br>
